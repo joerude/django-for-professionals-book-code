@@ -1,4 +1,5 @@
 from pathlib import Path
+from telnetlib import AUTHENTICATION
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,13 +20,31 @@ INSTALLED_APPS = [
     # Third-party
     'crispy_forms',
     'crispy_bootstrap5',
+    'allauth',
+    'allauth.account',
 
     # Local
     'accounts',
     'pages',
 ]
 
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTH_USER_MODEL = 'accounts.CustomUser'
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_USERNAME_REQUIRED = False 
+ACCOUNT_AUTHENTICATION_METHOD = "email" 
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -105,10 +124,6 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-
-
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
