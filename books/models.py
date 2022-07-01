@@ -12,6 +12,9 @@ class Book(models.Model):
 
     class Meta:
         verbose_name_plural = 'Books'
+        permissions = [
+            ('special_status', 'Can read all books'),
+        ]
 
 
     def __str__(self):
@@ -29,8 +32,8 @@ class Review(models.Model):
         related_name='reviews'
     )
     review = models.CharField(max_length=255)
-    author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,)
 
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,)
     def __str__(self):
         return self.review
 
