@@ -7,11 +7,16 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
+    depends_on:
+      - db
+    environment:
+      - "DJANGO_SECRET_KEY=django-insecure-vb_ct7g^-!_(zt#i&dmfu_7)9r6fsywp(-^23vy$ze6w#i2-^d"
+      - "DJANGO_DEBUG=True"
   
   db:
     image: postgres:13
     volumes:
-      - postgres_data:/var/live/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data/
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
 
