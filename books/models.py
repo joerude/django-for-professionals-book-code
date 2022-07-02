@@ -12,6 +12,7 @@ class Book(models.Model):
 
     class Meta:
         verbose_name_plural = 'Books'
+        indexes = [models.Index(fields=['id'], name='id_index'),]
         permissions = [
             ('special_status', 'Can read all books'),
         ]

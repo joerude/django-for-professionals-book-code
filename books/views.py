@@ -18,7 +18,7 @@ class BookDetailView(LoginRequiredMixin,
     context_object_name = 'book'
     login_url = 'account_login'
     permission_required = 'books.special_status'
-
+    queryset = Book.objects.all().prefetch_related('reviews__author',)
 
 class SearchResultListView(ListView):
     model = Book
@@ -29,4 +29,4 @@ class SearchResultListView(ListView):
         query = self.request.GET.get("q")
         return Book.objects.filter(
             Q(title__icontains=query) | Q(author__icontains=query)
-        )
+    )
