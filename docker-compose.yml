@@ -4,7 +4,8 @@ services:
     build: .
     ports: 
       - "8000:8000"
-    command: python manage.py runserver 0.0.0.0:8000
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn django_project.wsgi -b 0.0.0.0:8000 
     volumes:
       - .:/code
     depends_on:
@@ -19,7 +20,7 @@ services:
       - "DJANGO_SESSION_COOKIE_SECURE=False" 
       - "DJANGO_CSRF_COOKIE_SECURE=False" 
 
-      
+
   db:
     image: postgres:13
     volumes:

@@ -1,10 +1,21 @@
 
+body {
+    min-height: 75rem;
+    padding-top: 4.5rem;
+}
+
 h1 {
     color: red;
 }
 
 
-.bookover {
+/* .bookover { */
+    /* height: 300px; */
+    /* width: auto; */
+/* } */
+
+img.bookover {
     height: 300px;
     width: auto;
 }
+
